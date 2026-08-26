@@ -3,30 +3,26 @@
 import { useEffect, useState } from "react";
 import { Icons } from "./Icons";
 
-type Theme = "light" | "dark" | "system";
+type Theme = "light" | "dark";
+
+function resolveInitialTheme(): Theme {
+  if (typeof window === "undefined") return "light";
+  const saved = localStorage.getItem("seara-theme");
+  if (saved === "light" || saved === "dark") return saved;
+  return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+}
 
 function applyTheme(theme: Theme) {
-  const root = document.documentElement;
-  const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const resolved = theme === "system" ? (systemDark ? "dark" : "light") : theme;
-  root.dataset.theme = resolved;
-  root.dataset.themePreference = theme;
+  document.documentElement.dataset.theme = theme;
 }
 
 export function ThemeSwitcher() {
-  const [theme, setTheme] = useState<Theme>("system");
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    const saved = (localStorage.getItem("seara-theme") as Theme | null) || "system";
-    setTheme(saved);
-    applyTheme(saved);
-
-    const media = window.matchMedia("(prefers-color-scheme: dark)");
-    const onSystemChange = () => {
-      if ((localStorage.getItem("seara-theme") || "system") === "system") applyTheme("system");
-    };
-    media.addEventListener("change", onSystemChange);
-    return () => media.removeEventListener("change", onSystemChange);
+    const initial = resolveInitialTheme();
+    setTheme(initial);
+    applyTheme(initial);
   }, []);
 
   function update(next: Theme) {
@@ -35,17 +31,31 @@ export function ThemeSwitcher() {
     applyTheme(next);
   }
 
-  const CurrentIcon = theme === "light" ? Icons.sun : theme === "dark" ? Icons.moon : Icons.monitor;
+  const CurrentIcon = theme === "dark" ? Icons.moon : Icons.sun;
 
   return (
     <div className="themeMenu hoverMenu">
-      <button className="iconNavButton" aria-label="Theme" type="button">
+      <button className="themeButton" aria-label="Ubah tema" type="button">
         <CurrentIcon className="navSvg" />
+        <span>{theme === "dark" ? "Dark" : "Light"}</span>
+        <span className="chevron">⌄</span>
       </button>
+
       <div className="smallDropdown themeDropdown">
-        <button onClick={() => update("light")} className={theme === "light" ? "active" : ""}><Icons.sun /> Light</button>
-        <button onClick={() => update("dark")} className={theme === "dark" ? "active" : ""}><Icons.moon /> Dark</button>
-        <button onClick={() => update("system")} className={theme === "system" ? "active" : ""}><Icons.monitor /> System</button>
+        <button
+          onClick={() => update("light")}
+          className={theme === "light" ? "active" : ""}
+          type="button"
+        >
+          <Icons.sun /> Light
+        </button>
+        <button
+          onClick={() => update("dark")}
+          className={theme === "dark" ? "active" : ""}
+          type="button"
+        >
+          <Icons.moon /> Dark
+        </button>
       </div>
     </div>
   );

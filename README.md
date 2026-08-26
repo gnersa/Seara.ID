@@ -1,68 +1,61 @@
-# Seara Website V3 — Next.js / Vercel Ready
+# Seara Website V4 — Next.js / Vercel Ready
 
-One Next.js project for the Seara website and Seara CRM microsite.
+## Main improvements in V4
 
-## Stack
-- Next.js 16 App Router
-- React 19
-- TypeScript
-- Pure CSS (no UI library)
-- Vercel-ready
-- Hostname routing via `proxy.ts`
-
-## V3 additions
-
-### Main Navbar
-- Produk (hover mega menu)
-  - HR & Payroll
-  - Finance
-  - CRM
-  - Retail & POS
-  - Manufacturing
-- Industri (hover mega menu with icons + descriptions)
-  - Kesehatan
-  - Pendidikan
-  - Properti
-  - Tour & Travel
-  - Salon & Kecantikan
-  - F&B
-  - Pemerintahan
-  - Logistik
-- Harga
-- Resource (hover mega menu with icons + descriptions)
-  - Blog
-  - Guides
-  - Webinar
-  - Stories
-  - Templates
-- Language hover menu
-  - Indonesian
-  - English
-- Theme hover menu
+### Navigation
+- Produk, Industri, Resource mega menus open on hover.
+- Mega menus are centered relative to the whole navbar.
+- Maximum 4-column layout on desktop.
+- Right-side FEATURED panels removed.
+- Indonesian/English language selector removed.
+- Default language is Indonesian.
+- Theme switcher now contains only:
   - Light
   - Dark
-  - System
-- Login
-- WhatsApp Kami
-- Coba Gratis
+- First visit still follows the user's OS/system color preference.
 
-### Branding
-Official uploaded Seara logo is used from:
-- `/public/seara-logo.png`
-- Next.js favicon metadata
-- `/app/icon.png`
-
-### Contact
-- WhatsApp: `+6285175380890`
-  - Direct URL: `https://wa.me/6285175380890`
-- Email: `Info@seara.id`
-  - Direct URL: `mailto:Info@seara.id`
+### Footer
+Contact information is now placed under the Seara company description on the lower-left side:
+- WhatsApp: +6285175380890
+- Email: Info@seara.id
 - Location: Bandung, Jawa Barat
 
-### Footer copy
-**Platform ERP modern untuk perusahaan dinamis. Kelola HR, Keuangan, dan Operasional dalam satu ekosistem cerdas.**
+WhatsApp and email are clickable.
+Icons are minimal monochrome icons that match the footer theme.
 
-## Local development
+Bottom footer:
+- © 2026 SEARA, Inc. All rights reserved.
+- Kebijakan Privasi
+- Syarat & Ketentuan
+- Cookie Settings
+
+### Live Chat
+Floating live chat widget includes:
+- FAQ accordion
+- Free-text message box
+- "Kirim Pesan ke Tim" action
+- Message is sent directly through WhatsApp to +6285175380890
+
+### SEO metadata
+Custom title, description, and canonical URL have been added for:
+- /
+- /produk
+- /industri
+- /harga
+- /resources
+- /about
+- /contact
+- /privacy
+- /terms
+- crm.seara.id
+- crm.seara.id/fitur
+- crm.seara.id/solusi
+- crm.seara.id/harga
+- crm.seara.id/contact
+
+Sitemap is also updated with main-site and CRM public URLs.
+
+## Run locally
 
 ```bash
 npm install
@@ -70,21 +63,19 @@ npm run dev
 ```
 
 Main site:
-`http://localhost:3000`
+http://localhost:3000
 
 CRM local preview:
-`http://localhost:3000/crm`
+http://localhost:3000/crm
 
-## Vercel deployment
+## Deploy to Vercel
 
 1. Extract this ZIP.
-2. Upload/push the extracted project files to your GitHub repository.
-3. Import the repository in Vercel.
-4. Framework: Next.js.
-5. Deploy.
-6. Connect `seara.id` and `crm.seara.id` to the same Vercel project.
-
-`proxy.ts` rewrites requests from `crm.seara.id` to internal `/crm` routes.
+2. Replace/push the project files into your existing GitHub repository.
+3. Commit and push.
+4. Vercel automatically rebuilds when the repository is already connected.
+5. Connect `seara.id` and `crm.seara.id` to the same Vercel project.
 
 ## Important
-The language menu persists the selected Indonesian/English setting and translates navigation labels. Full page-by-page English content can be expanded later using an i18n dictionary or locale routes.
+The contact/demo form is still UI-only. Connect it to your preferred backend/API when ready.
+The Cookie Settings button is visual only until a consent-management platform is connected.

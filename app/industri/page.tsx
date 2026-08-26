@@ -4,7 +4,11 @@ import { Header } from "@/components/Header";
 import { Icons } from "@/components/Icons";
 import { CTA } from "@/components/Sections";
 
-export const metadata = { title: "Industri" };
+export const metadata = {
+  title: "Solusi ERP Berdasarkan Industri",
+  description: "Solusi Seara untuk Kesehatan, Pendidikan, Properti, Tour & Travel, Salon & Kecantikan, F&B, Pemerintahan, dan Logistik.",
+  alternates: { canonical: "https://seara.id/industri" },
+};
 
 const industries = [
   ["kesehatan", "Kesehatan", "Jawab & booking pasien 24/7", Icons.health],

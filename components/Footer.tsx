@@ -7,16 +7,39 @@ export function Footer({ crm = false }: { crm?: boolean }) {
   return (
     <footer className="siteFooter">
       <div className="wrap">
-        <div className="footerGrid footerGridV3">
+        <div className="footerGrid footerGridV4">
           <div className="footerBrandColumn">
             <Link href={crm ? "/crm" : "/"} className="footerBrand">
-              <Image src="/seara-logo.png" width={46} height={46} alt="Seara" />
+              <Image src="/seara-logo.png" width={44} height={44} alt="Seara" />
               <span>Seara</span>
             </Link>
+
             <p className="footerStatement">
               <strong>Platform ERP modern untuk perusahaan dinamis.</strong>{" "}
               Kelola HR, Keuangan, dan Operasional dalam satu ekosistem cerdas.
             </p>
+
+            <div className="footerContactsInline">
+              <a
+                className="contactItem"
+                href="https://wa.me/6285175380890"
+                target="_blank"
+                rel="noreferrer"
+              >
+                <span className="contactIcon"><Icons.whatsapp /></span>
+                <span>+6285175380890</span>
+              </a>
+
+              <a className="contactItem" href="mailto:Info@seara.id">
+                <span className="contactIcon"><Icons.mail /></span>
+                <span>Info@seara.id</span>
+              </a>
+
+              <div className="contactItem">
+                <span className="contactIcon"><Icons.pin /></span>
+                <span>Bandung, Jawa Barat</span>
+              </div>
+            </div>
           </div>
 
           <div className="footerCol">
@@ -49,35 +72,23 @@ export function Footer({ crm = false }: { crm?: boolean }) {
             <Link href="/resources#templates">Templates</Link>
           </div>
 
-          <div className="footerContact">
-            <h4>Kontak Kami</h4>
-
-            <a
-              className="contactItem"
-              href="https://wa.me/6285175380890"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="WhatsApp Seara +6285175380890"
-            >
-              <span className="contactIcon whatsappContact"><Icons.whatsapp /></span>
-              <span>+6285175380890</span>
-            </a>
-
-            <a className="contactItem" href="mailto:Info@seara.id" aria-label="Email Info@seara.id">
-              <span className="contactIcon emailContact"><Icons.mail /></span>
-              <span>Info@seara.id</span>
-            </a>
-
-            <div className="contactItem">
-              <span className="contactIcon locationContact"><Icons.pin /></span>
-              <span>Bandung, Jawa Barat</span>
-            </div>
+          <div className="footerCol">
+            <h4>Perusahaan</h4>
+            <Link href="/about">Tentang Kami</Link>
+            <Link href="/contact">Kontak</Link>
+            <Link href="/harga">Harga</Link>
+            <a href="#">Partner</a>
           </div>
         </div>
 
-        <div className="footerBottom">
-          <span>© 2026 Seara. All rights reserved.</span>
-          <span>Built for connected operations.</span>
+        <div className="footerBottom footerBottomV4">
+          <strong>© 2026 SEARA, Inc. All rights reserved.</strong>
+
+          <nav className="footerLegal">
+            <a href="/privacy">Kebijakan Privasi</a>
+            <a href="/terms">Syarat & Ketentuan</a>
+            <button type="button">Cookie Settings</button>
+          </nav>
         </div>
       </div>
     </footer>

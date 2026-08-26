@@ -3,7 +3,11 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { Icons } from "@/components/Icons";
 
-export const metadata = { title: "Resource" };
+export const metadata = {
+  title: "Resource — Blog, Guides, Webinar, Stories & Templates",
+  description: "Pelajari insight, panduan, webinar, case study, dan template untuk meningkatkan HR, Finance, CRM, Sales, dan operasional bisnis.",
+  alternates: { canonical: "https://seara.id/resources" },
+};
 
 const resources = [
   ["blog", "Blog", "Insight terbaru seputar operasional, teknologi, dan pertumbuhan bisnis.", Icons.blog],

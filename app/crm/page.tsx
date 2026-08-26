@@ -1,5 +1,9 @@
 import Link from "next/link";import {Header} from "@/components/Header";import {Footer} from "@/components/Footer";import {Dashboard} from "@/components/Dashboard";import {CTA,SectionHead} from "@/components/Sections";
-export const metadata={title:"Seara CRM — Omnichannel CRM",description:"Omnichannel CRM untuk percakapan, lead distribution, multi-unit, escalation, dan analytics."};
+export const metadata = {
+  title: "Seara CRM — Omnichannel CRM & Lead Distribution",
+  description: "Kelola WhatsApp, Instagram, Email, Telegram, leads, round robin, multi-unit, escalation, dan analytics dalam Seara CRM.",
+  alternates: { canonical: "https://crm.seara.id" },
+};
 export default function Page(){return <><Header crm/><main>
 <section><div className="wrap hero"><div><span className="eyebrow"><i className="dot"/> OMNICHANNEL CRM</span><h1>Kuasai semua saluran chat. <span className="gradient">Otomatisasi distribusi lintas tim.</span></h1><p className="lead">Seara CRM menyatukan percakapan customer, lead distribution, multi-unit, escalation, dan analytics dalam satu workspace.</p><div className="heroActions"><Link className="btn btnBlue" href="/crm/contact">Request Demo →</Link><Link className="btn btnGhost" href="/crm/harga">See Pricing</Link></div></div><Dashboard crm/></div></section>
 <section><div className="wrap"><SectionHead title={"All channels.<br/>One customer workspace."} body="Hubungkan channel utama customer tanpa membuat tim berpindah-pindah aplikasi."/><div className="grid3">{[["WA","WhatsApp Business"],["IG","Instagram DM"],["@","Email / Gmail"],["TG","Telegram"],["AD","Meta Ads Webhook"],["API","API & Webhook"]].map(a=><article className="card" key={a[1]}><div className="icon">{a[0]}</div><h3>{a[1]}</h3><p>Terhubung ke shared customer workspace dan operational workflow Seara CRM.</p></article>)}</div></div></section>

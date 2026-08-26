@@ -1,2 +1,6 @@
-import {Header} from "@/components/Header";import {Footer} from "@/components/Footer";export const metadata={title:"Request Demo"};
+import {Header} from "@/components/Header";import {Footer} from "@/components/Footer";export const metadata = {
+  title: "Hubungi Seara & Request Demo",
+  description: "Hubungi tim Seara untuk konsultasi, request demo, dan pembahasan kebutuhan ERP, CRM, HR, Finance, Retail, atau Manufacturing.",
+  alternates: { canonical: "https://seara.id/contact" },
+};
 export default function Page(){return <><Header/><main><section><div className="wrap hero"><div><span className="eyebrow">REQUEST DEMO</span><h1>Tell us how your <span className="gradient">business operates.</span></h1><p className="lead">Gunakan form ini sebagai placeholder UI. Sambungkan ke API/CRM/form handler Anda saat production.</p></div><article className="card"><h3>Request a Demo</h3><form className="form"><input placeholder="Nama"/><input type="email" placeholder="Email perusahaan"/><input placeholder="Nama perusahaan"/><select defaultValue=""><option value="" disabled>Produk yang diminati</option><option>HR & Payroll</option><option>Finance</option><option>Sales & CRM</option><option>Retail & POS</option><option>Manufacturing</option></select><textarea placeholder="Ceritakan kebutuhan Anda"/><button className="btn btnBlue" type="button">Submit Request</button></form></article></div></section></main><Footer/></>;}

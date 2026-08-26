@@ -2,7 +2,11 @@ import Link from "next/link";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
-export const metadata = { title: "Harga" };
+export const metadata = {
+  title: "Harga & Paket ERP Seara",
+  description: "Temukan paket dan harga Seara berdasarkan produk, jumlah pengguna, unit bisnis, dan kebutuhan integrasi perusahaan Anda.",
+  alternates: { canonical: "https://seara.id/harga" },
+};
 
 const packages = [
   {

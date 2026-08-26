@@ -1,45 +1,9 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { Brand } from "./Brand";
 import { Icons } from "./Icons";
 import { ThemeSwitcher } from "./ThemeSwitcher";
-
-type Language = "id" | "en";
-
-const dictionary = {
-  id: {
-    product: "Produk",
-    industry: "Industri",
-    pricing: "Harga",
-    resources: "Resource",
-    login: "Login",
-    whatsapp: "WhatsApp Kami",
-    trial: "Coba Gratis",
-    allProducts: "Lihat semua produk",
-    allIndustries: "Lihat semua industri",
-    allResources: "Lihat semua resource",
-    productSub: "Sistem operasional Seara",
-    industrySub: "Solusi berdasarkan industri",
-    resourceSub: "Insight & materi bisnis",
-  },
-  en: {
-    product: "Products",
-    industry: "Industries",
-    pricing: "Pricing",
-    resources: "Resources",
-    login: "Login",
-    whatsapp: "WhatsApp Us",
-    trial: "Try Free",
-    allProducts: "View all products",
-    allIndustries: "View all industries",
-    allResources: "View all resources",
-    productSub: "Seara operational systems",
-    industrySub: "Solutions by industry",
-    resourceSub: "Business insights & resources",
-  },
-};
 
 const products = [
   ["HR & Payroll", "Kelola people, attendance & payroll", "/produk#hr", "HR"],
@@ -68,132 +32,111 @@ const resources = [
   ["Templates", "Template workflow, KPI & checklist", "/resources#templates", Icons.template],
 ];
 
-function LanguageMenu({
-  lang,
-  setLang,
-}: {
-  lang: Language;
-  setLang: (lang: Language) => void;
-}) {
-  function choose(next: Language) {
-    setLang(next);
-    localStorage.setItem("seara-language", next);
-    document.documentElement.lang = next === "id" ? "id" : "en";
-  }
-
-  return (
-    <div className="languageMenu hoverMenu">
-      <button type="button" className="languageButton">
-        <Icons.globe className="navSvg" />
-        <span>{lang === "id" ? "Indonesian" : "English"}</span>
-        <span className="chevron">⌄</span>
-      </button>
-      <div className="smallDropdown languageDropdown">
-        <button className={lang === "id" ? "active" : ""} onClick={() => choose("id")}>Indonesian</button>
-        <button className={lang === "en" ? "active" : ""} onClick={() => choose("en")}>English</button>
-      </div>
-    </div>
-  );
-}
-
-function IndustryMega({ t }: { t: typeof dictionary.id | typeof dictionary.en }) {
+function IndustryMega() {
   return (
     <div className="mega megaIndustry">
-      <div className="megaMain">
-        <div className="megaHeading">
-          <span>{t.industry}</span>
-          <small>{t.industrySub}</small>
-        </div>
-        <div className="industryMegaGrid">
-          {industries.map(([title, description, href, Icon]) => {
-            const IndustryIcon = Icon as typeof Icons.health;
-            return (
-              <Link href={href as string} className="richMegaItem" key={title as string}>
-                <span className="richMegaIcon"><IndustryIcon /></span>
-                <span className="richMegaCopy">
-                  <strong>{title as string}</strong>
-                  <small>{description as string}</small>
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+      <div className="megaHeading">
+        <span>Industri</span>
+        <small>Solusi berdasarkan industri</small>
       </div>
-      <aside className="megaAside">
-        <span className="asideEyebrow">{t.allIndustries.toUpperCase()}</span>
-        <h3>Solusi untuk cara bisnis yang berbeda.</h3>
-        <p>Temukan bagaimana Seara membantu operasional berbagai industri menjadi lebih efisien.</p>
-        <Link href="/industri" className="megaAsideButton">{t.allIndustries} →</Link>
-      </aside>
+
+      <div className="megaGrid4">
+        {industries.map(([title, description, href, Icon]) => {
+          const IndustryIcon = Icon as typeof Icons.health;
+          return (
+            <Link href={href as string} className="richMegaItem" key={title as string}>
+              <span className="richMegaIcon"><IndustryIcon /></span>
+              <span className="richMegaCopy">
+                <strong>{title as string}</strong>
+                <small>{description as string}</small>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+
+      <Link href="/industri" className="megaBottomLink">Lihat semua industri →</Link>
     </div>
   );
 }
 
-function ResourceMega({ t }: { t: typeof dictionary.id | typeof dictionary.en }) {
+function ResourceMega() {
   return (
     <div className="mega megaResource">
-      <div className="megaMain">
-        <div className="megaHeading">
-          <span>{t.resources}</span>
-          <small>{t.resourceSub}</small>
-        </div>
-        <div className="resourceMegaGrid">
-          {resources.map(([title, description, href, Icon]) => {
-            const ResourceIcon = Icon as typeof Icons.blog;
-            return (
-              <Link href={href as string} className="richMegaItem" key={title as string}>
-                <span className="richMegaIcon"><ResourceIcon /></span>
-                <span className="richMegaCopy">
-                  <strong>{title as string}</strong>
-                  <small>{description as string}</small>
-                </span>
-              </Link>
-            );
-          })}
-        </div>
+      <div className="megaHeading">
+        <span>Resource</span>
+        <small>Insight & materi bisnis</small>
       </div>
-      <aside className="megaAside">
-        <span className="asideEyebrow">{t.allResources.toUpperCase()}</span>
-        <h3>Belajar. Terapkan. Tumbuh.</h3>
-        <p>Insight dan materi untuk memperbaiki customer, people, finance, dan operational workflow.</p>
-        <Link href="/resources" className="megaAsideButton">{t.allResources} →</Link>
-      </aside>
+
+      <div className="megaGrid4 resourceGrid">
+        {resources.map(([title, description, href, Icon]) => {
+          const ResourceIcon = Icon as typeof Icons.blog;
+          return (
+            <Link href={href as string} className="richMegaItem" key={title as string}>
+              <span className="richMegaIcon"><ResourceIcon /></span>
+              <span className="richMegaCopy">
+                <strong>{title as string}</strong>
+                <small>{description as string}</small>
+              </span>
+            </Link>
+          );
+        })}
+      </div>
+
+      <Link href="/resources" className="megaBottomLink">Lihat semua resource →</Link>
+    </div>
+  );
+}
+
+function ProductMega() {
+  return (
+    <div className="mega megaProducts">
+      <div className="megaHeading">
+        <span>Produk</span>
+        <small>Sistem operasional Seara</small>
+      </div>
+
+      <div className="megaGrid4 productGrid">
+        {products.map(([title, description, href, icon]) => (
+          <Link href={href} className="productMegaItem" key={title}>
+            <span className="productMegaIcon">{icon}</span>
+            <span>
+              <strong>{title}</strong>
+              <small>{description}</small>
+            </span>
+          </Link>
+        ))}
+      </div>
+
+      <Link href="/produk" className="megaBottomLink">Lihat semua produk →</Link>
     </div>
   );
 }
 
 export function Header({ crm = false }: { crm?: boolean }) {
-  const [lang, setLang] = useState<Language>("id");
-
-  useEffect(() => {
-    const saved = localStorage.getItem("seara-language");
-    if (saved === "id" || saved === "en") {
-      setLang(saved);
-      document.documentElement.lang = saved;
-    }
-  }, []);
-
-  const t = dictionary[lang];
-
   if (crm) {
     return (
       <header className="nav">
         <div className="wrap navInner">
           <Brand crm />
           <nav className="navLinks">
-            <Link href="/crm/fitur">{lang === "id" ? "Fitur" : "Features"}</Link>
-            <Link href="/crm/solusi">{lang === "id" ? "Solusi" : "Solutions"}</Link>
-            <Link href="/crm/harga">{t.pricing}</Link>
-            <Link href="/resources">{t.resources}</Link>
+            <Link href="/crm/fitur">Fitur</Link>
+            <Link href="/crm/solusi">Solusi</Link>
+            <Link href="/crm/harga">Harga</Link>
+            <Link href="/resources">Resource</Link>
           </nav>
           <div className="navActions">
             <ThemeSwitcher />
-            <LanguageMenu lang={lang} setLang={setLang} />
-            <a className="navLogin" href="https://crm.seara.id">{t.login}</a>
-            <a className="btn btnWhatsApp" href="https://wa.me/6285175380890" target="_blank" rel="noreferrer">
-              <Icons.whatsapp className="btnIcon" /> {t.whatsapp}
+            <a className="navLogin" href="https://crm.seara.id">Login</a>
+            <a
+              className="btn btnWhatsApp"
+              href="https://wa.me/6285175380890"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <Icons.whatsapp className="btnIcon" /> WhatsApp Kami
             </a>
-            <Link className="btn btnTrial" href="/crm/contact">{t.trial}</Link>
+            <Link className="btn btnTrial" href="/crm/contact">Coba Gratis</Link>
           </div>
         </div>
       </header>
@@ -207,54 +150,39 @@ export function Header({ crm = false }: { crm?: boolean }) {
 
         <nav className="navLinks">
           <div className="navHover">
-            <Link href="/produk">{t.product} <span className="chevron">⌄</span></Link>
-            <div className="mega megaProducts">
-              <div className="megaMain">
-                <div className="megaHeading">
-                  <span>{t.product}</span>
-                  <small>{t.productSub}</small>
-                </div>
-                <div className="productMegaList">
-                  {products.map(([title, description, href, icon]) => (
-                    <Link href={href} className="productMegaItem" key={title}>
-                      <span className="productMegaIcon">{icon}</span>
-                      <span><strong>{title}</strong><small>{description}</small></span>
-                      <b>→</b>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-              <aside className="megaAside crmAside">
-                <span className="asideEyebrow">FEATURED</span>
-                <h3>Seara CRM</h3>
-                <p>Omnichannel CRM, lead distribution, multi-unit & team monitoring.</p>
-                <Link href="/crm" className="megaAsideButton">Explore CRM →</Link>
-              </aside>
-            </div>
+            <Link href="/produk">Produk <span className="chevron">⌄</span></Link>
+            <ProductMega />
           </div>
 
           <div className="navHover">
-            <Link href="/industri">{t.industry} <span className="chevron">⌄</span></Link>
-            <IndustryMega t={t} />
+            <Link href="/industri">Industri <span className="chevron">⌄</span></Link>
+            <IndustryMega />
           </div>
 
-          <Link href="/harga">{t.pricing}</Link>
+          <Link href="/harga">Harga</Link>
 
           <div className="navHover">
-            <Link href="/resources">{t.resources} <span className="chevron">⌄</span></Link>
-            <ResourceMega t={t} />
+            <Link href="/resources">Resource <span className="chevron">⌄</span></Link>
+            <ResourceMega />
           </div>
         </nav>
 
         <div className="navActions">
           <ThemeSwitcher />
-          <LanguageMenu lang={lang} setLang={setLang} />
-          <a className="navLogin" href="https://crm.seara.id">{t.login}</a>
-          <a className="btn btnWhatsApp" href="https://wa.me/6285175380890" target="_blank" rel="noreferrer">
+
+          <a className="navLogin" href="https://crm.seara.id">Login</a>
+
+          <a
+            className="btn btnWhatsApp"
+            href="https://wa.me/6285175380890"
+            target="_blank"
+            rel="noreferrer"
+          >
             <Icons.whatsapp className="btnIcon" />
-            {t.whatsapp}
+            WhatsApp Kami
           </a>
-          <Link className="btn btnTrial" href="/contact">{t.trial}</Link>
+
+          <Link className="btn btnTrial" href="/contact">Coba Gratis</Link>
         </div>
       </div>
     </header>
