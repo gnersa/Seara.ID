@@ -1,175 +1,76 @@
-# Seara Website V5 — Next.js / Vercel Ready
+# Seara Website V6 — Typography & Responsive Polish
 
-V5 focuses on production readiness, conversion flow, mobile usability, technical SEO, and richer landing-page architecture.
+V6 is focused on correcting the visual hierarchy seen on the live V5 deployment.
 
-## Main improvements
+## Main fixes
 
-### UX & Conversion
-- Apple-inspired light/dark UI retained.
-- Full mobile navigation drawer for Products, Industries, Pricing, Resources, Login, WhatsApp, and Demo.
-- CTA standardized to **Coba Demo** so it does not imply an instant free account.
-- Demo forms now work: submitted data is composed into a WhatsApp message to `+6285175380890`.
-- Email alternative links directly to `Info@seara.id`.
-- Dashboard numbers are explicitly marked **DEMO DATA** to avoid presenting mock values as business claims.
-- Live chat is lazy-loaded: the chat panel code is loaded only after the visitor opens the widget.
-- FAQ accordion and direct WhatsApp messaging remain available in Live Chat.
-- Functional Cookie Settings modal stores preferences in localStorage.
+### Typography
+- Replaced aggressive heading scale with a restrained Apple-inspired system type scale.
+- Uses native system fonts:
+  - `-apple-system`
+  - `BlinkMacSystemFont`
+  - `SF Pro Display / Text` when available
+  - `Segoe UI`
+  - `Roboto`
+  - `Helvetica / Arial`
+- H1 max desktop size reduced from 80px to 68px.
+- H2 max desktop size reduced from 56px to 46px.
+- Improved line-height and letter-spacing.
+- Font weights normalized to 600/700 instead of synthetic 750/850 values.
+- Added font smoothing and optimized legibility.
 
-### Homepage depth
-Homepage now includes:
-1. Hero
-2. Operational audience strip
-3. Business pain points
-4. Seara ecosystem overview
-5. Product overview
-6. Industry solutions
-7. Seara CRM feature section
-8. CRM integration channels
-9. Why Seara
-10. Customer Stories entry point
-11. Resource hub preview
-12. FAQ
-13. Final CTA
-14. Footer
+### Section heading layout
+`SectionHead` now has:
+- constrained headline width
+- proper description width
+- optional eyebrow label
+- single-column layout on tablet/mobile
 
-No unverified customer logos or testimonials are fabricated. Add real customer evidence when approved.
+This fixes sections such as:
+- "Terhubung dengan channel yang digunakan customer."
+- "Produk yang bekerja sebagai satu sistem."
+- "Kenapa membangun operasional bersama Seara?"
 
-## SEO route architecture
+### Industry UI
+- Industry hub icons restored.
+- Industry homepage cards now include matching line icons.
+- Consistent icon container size, alignment, hover state, and description spacing.
+- Responsive 2-column desktop / 1-column mobile hub layout.
 
-### Main website
-- `/`
-- `/produk`
-- `/produk/hr-payroll`
-- `/produk/finance`
-- `/produk/retail-pos`
-- `/produk/manufacturing`
-- `/industri`
-- `/industri/kesehatan`
-- `/industri/pendidikan`
-- `/industri/properti`
-- `/industri/tour-travel`
-- `/industri/salon-kecantikan`
-- `/industri/fnb`
-- `/industri/pemerintahan`
-- `/industri/logistik`
-- `/harga`
-- `/resources`
-- `/resources/blog`
-- `/resources/guides`
-- `/resources/webinar`
-- `/resources/stories`
-- `/resources/templates`
-- `/about`
-- `/contact`
-- `/privacy`
-- `/terms`
+### Integrations
+The channel integration list now uses proper icons for:
+- WhatsApp
+- Instagram
+- Email / Gmail
+- Telegram
+- Meta Ads
+- API & Webhook
 
-### CRM public hostname
-- `https://crm.seara.id/`
-- `https://crm.seara.id/fitur`
-- `https://crm.seara.id/solusi`
-- `https://crm.seara.id/harga`
-- `https://crm.seara.id/contact`
+### FAQ
+Homepage FAQ redesigned into an editorial two-column layout:
+- intro on the left
+- accordion on the right
+- first item opened by default
+- custom plus/minus control
+- better spacing and typography
+- single-column responsive mobile layout
 
-The same repository serves both `seara.id` and `crm.seara.id` using `proxy.ts`.
+### Mobile
+- H1/H2 use smaller mobile-specific scale.
+- Section spacing reduced appropriately.
+- Integration cards become 2 columns, then 1 column on very small screens.
+- Industry cards become 1 column.
+- FAQ becomes single column.
+- Mobile navigation locks body scroll while open.
 
-## Meta titles & descriptions
-Every main route has dedicated metadata. Dynamic Product, Industry, and Resource paths generate their own title, description, canonical URL, and Open Graph metadata from `lib/site-data.ts`.
+## Deploy
 
-## Structured data / LD+JSON
-V5 includes:
-
-### Global Publisher / Organization
-- `Organization`
-- Legal name: `SEARA, Inc.`
-- URL: `https://seara.id`
-- Logo
-- Publisher ID: `https://seara.id/#organization`
-- Email: `Info@seara.id`
-- Phone: `+6285175380890`
-- Address: Bandung, Jawa Barat, Indonesia
-- Sales `ContactPoint`
-
-### WebSite
-The main WebSite schema includes:
-
-```json
-"publisher": {
-  "@id": "https://seara.id/#organization"
-}
-```
-
-### Per-page schema
-- `WebPage`
-- `BreadcrumbList`
-- `SoftwareApplication` on product/software pages
-- `CollectionPage` on Resource landing pages
-- `FAQPage` on homepage
-- Seara CRM SoftwareApplication schema with publisher reference
-
-## Staging SEO protection
-`*.vercel.app`, localhost, and local preview responses receive:
-
-```text
-X-Robots-Tag: noindex, nofollow, noarchive
-```
-
-This prevents the Vercel staging domain from competing with `seara.id` in search engines.
-
-Production domains stay indexable.
-
-## Separate sitemap / robots
-
-### Main
-- `https://seara.id/sitemap.xml`
-- `https://seara.id/robots.txt`
-
-### CRM
-- `https://crm.seara.id/sitemap.xml`
-- `https://crm.seara.id/robots.txt`
-
-`proxy.ts` routes CRM sitemap and robots requests to CRM-specific handlers.
-
-## Security headers
-`next.config.ts` adds:
-- Content-Security-Policy
-- Strict-Transport-Security
-- X-Content-Type-Options
-- X-Frame-Options
-- Referrer-Policy
-- Permissions-Policy
-
-Review the CSP if you later add Google Analytics, Meta Pixel, third-party chat, CDN assets, or embedded video.
-
-## Open Graph
-`app/opengraph-image.tsx` generates a 1200×630 Seara social preview image automatically.
-
-## Theme
-- Initial first visit follows OS theme.
-- User-facing choices: **Light** and **Dark** only.
-- Explicit choice persists in localStorage.
-
-## Deployment
-
-```bash
-npm install
-npm run build
-```
-
-Then push to the GitHub repository already connected to Vercel.
+Replace the source files in your current GitHub repository with this V6 package:
 
 ```bash
 git add .
-git commit -m "Upgrade Seara website to V5"
+git commit -m "Polish Seara typography and responsive UI"
 git push
 ```
 
-Vercel should redeploy automatically.
-
-## Production checklist
-Before moving the custom domains live:
-- Add real product screenshots to `/public` and replace generic dashboard illustrations where appropriate.
-- Add approved customer logos/testimonials/case studies only when verified.
-- Confirm CRM price limits and commercial terms.
-- Connect analytics only after updating CSP and cookie-consent behavior.
-- Review legal pages with the appropriate internal/legal owner.
+If the repository is already connected to Vercel, deployment will start automatically.

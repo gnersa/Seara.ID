@@ -4,11 +4,42 @@ import { Footer } from "@/components/Footer";
 import { Dashboard } from "@/components/Dashboard";
 import { CTA, SectionHead } from "@/components/Sections";
 import { JsonLd, breadcrumbSchema } from "@/components/JsonLd";
+import { Icons } from "@/components/Icons";
 
 export const metadata={title:"Seara CRM — Omnichannel CRM & Lead Distribution",description:"Kelola WhatsApp, Instagram, Email, Telegram, leads, round robin, multi-unit, escalation, dan analytics dalam Seara CRM.",alternates:{canonical:"https://crm.seara.id"}};
 export default function Page(){const software={"@context":"https://schema.org","@type":"SoftwareApplication","@id":"https://crm.seara.id/#software",name:"Seara CRM",url:"https://crm.seara.id",applicationCategory:"BusinessApplication",operatingSystem:"Web",description:"Omnichannel CRM untuk customer conversation, lead distribution, round robin, multi-unit, escalation, dan analytics.",publisher:{"@id":"https://seara.id/#organization"},offers:{"@type":"AggregateOffer",priceCurrency:"IDR",lowPrice:"499000",offerCount:"3"}};return <><JsonLd data={[software,breadcrumbSchema([{name:"Seara CRM",url:"https://crm.seara.id"}])]}/><Header crm/><main>
 <section><div className="wrap hero"><div><span className="eyebrow"><i className="dot"/> OMNICHANNEL CRM</span><h1>Semua percakapan. <span className="gradient">Distribusi lead lebih terkontrol.</span></h1><p className="lead">Seara CRM menyatukan channel customer, lead management, round robin, multi-unit, escalation, dan analytics dalam satu workspace.</p><div className="heroActions"><Link className="btn btnBlue" href="/crm/contact">Coba Demo →</Link><Link className="btn btnGhost" href="/crm/harga">Lihat Harga</Link></div></div><Dashboard crm/></div></section>
-<section><div className="wrap"><SectionHead title={"Semua channel.<br/>Satu customer workspace."} body="Hubungkan channel utama customer tanpa membuat tim berpindah-pindah aplikasi."/><div className="grid3">{[["WA","WhatsApp Business"],["IG","Instagram DM"],["@","Email / Gmail"],["TG","Telegram"],["AD","Meta Ads Webhook"],["API","API & Webhook"]].map(a=><article className="card" key={a[1]}><div className="icon">{a[0]}</div><h3>{a[1]}</h3><p>Terhubung ke shared customer workspace dan workflow operasional Seara CRM.</p></article>)}</div></div></section>
+<section>
+        <div className="wrap">
+          <SectionHead
+            eyebrow="OMNICHANNEL"
+            title={"Semua channel.<br/>Satu customer workspace."}
+            body="Hubungkan channel utama customer tanpa membuat tim berpindah-pindah aplikasi."
+          />
+          <div className="grid3 channelCardGrid">
+            {[
+              ["WhatsApp Business", Icons.whatsapp],
+              ["Instagram DM", Icons.instagram],
+              ["Email / Gmail", Icons.mail],
+              ["Telegram", Icons.telegram],
+              ["Meta Ads Webhook", Icons.ads],
+              ["API & Webhook", Icons.api],
+            ].map(([label, Icon]) => {
+              const ChannelIcon = Icon as typeof Icons.whatsapp;
+              return (
+                <article className="card channelCard" key={label as string}>
+                  <div className="channelCardIcon"><ChannelIcon /></div>
+                  <h3>{label as string}</h3>
+                  <p>
+                    Terhubung ke shared customer workspace dan workflow operasional
+                    Seara CRM.
+                  </p>
+                </article>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 <section><div className="wrap"><SectionHead title={"Cara lama vs.<br/>Seara CRM."} body="Kurangi fragmentasi channel dan distribusi lead manual."/><div className="compare"><div className="compareCol old"><h3>Cara Lama</h3><ul><li>Chat tersebar di banyak akun</li><li>Lead dibagi manual</li><li>Lead rebutan atau terlambat ditangani</li><li>Owner sulit melihat performa</li><li>Riwayat customer terpecah</li></ul></div><div className="compareCol new"><h3>Dengan Seara CRM</h3><ul><li>Omnichannel shared inbox</li><li>Auto assignment</li><li>Round robin distribution</li><li>Real-time analytics</li><li>Centralized customer history</li></ul></div></div></div></section>
 <section><div className="wrap"><div className="darkBand"><div><h2>Lead masuk.<br/>Seara cari pemiliknya.</h2><p className="lead">Distribusikan lead otomatis menggunakan routing rules dan round robin sehingga setiap peluang punya owner yang jelas.</p><Link className="btn btnBlue" href="/crm/fitur">Lihat Semua Fitur →</Link></div><div className="flow">{[["Lead Masuk","Channel"],["Routing Rules","Unit / Team"],["Round Robin","Auto Assign"],["Staff","Follow-up"]].map(([a,b],i)=><div key={a}>{i>0&&<div className="flowArrow">↓</div>}<div className="flowItem"><b>{a}</b><span>{b}</span></div></div>)}</div></div></div></section>
 <CTA crm/></main><Footer crm/></>}

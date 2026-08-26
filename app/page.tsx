@@ -5,6 +5,28 @@ import { Dashboard } from "@/components/Dashboard";
 import { CTA, SectionHead } from "@/components/Sections";
 import { JsonLd, breadcrumbSchema } from "@/components/JsonLd";
 import { industries, products, resources } from "@/lib/site-data";
+import { Icons } from "@/components/Icons";
+import { FAQSection } from "@/components/FAQSection";
+
+const industryIconMap = {
+  kesehatan: Icons.health,
+  pendidikan: Icons.education,
+  properti: Icons.property,
+  "tour-travel": Icons.travel,
+  "salon-kecantikan": Icons.beauty,
+  fnb: Icons.food,
+  pemerintahan: Icons.government,
+  logistik: Icons.logistics,
+} as const;
+
+const integrationItems = [
+  ["WhatsApp", Icons.whatsapp],
+  ["Instagram", Icons.instagram],
+  ["Email / Gmail", Icons.mail],
+  ["Telegram", Icons.telegram],
+  ["Meta Ads", Icons.ads],
+  ["API & Webhook", Icons.api],
+] as const;
 
 export default function Home() {
   const pageSchema = {
@@ -47,11 +69,61 @@ export default function Home() {
 
       <section><div className="wrap"><SectionHead title={"Produk yang bekerja<br/>sebagai satu sistem."} body="Setiap produk memiliki fokus yang jelas, tetapi dirancang agar dapat hidup dalam ekosistem operasional yang sama."/><div className="grid3">{products.map((p)=><article className="card productCard" key={p.slug}><div className="icon">{p.icon}</div><h3>{p.title}</h3><p>{p.description}</p><Link className="textLink" href={p.slug === "crm" ? "/crm" : `/produk/${p.slug}`}>Pelajari {p.title} →</Link></article>)}</div></div></section>
 
-      <section><div className="wrap"><SectionHead title={"Solusi yang mengikuti<br/>cara industri Anda bekerja."} body="Gunakan Seara untuk menangani workflow yang berbeda pada setiap industri tanpa kehilangan struktur operasional."/><div className="industryPreviewGrid">{industries.map((i)=><Link href={`/industri/${i.slug}`} className="industryPreview" key={i.slug}><strong>{i.title}</strong><span>{i.navDescription}</span><b>→</b></Link>)}</div><div className="centerAction"><Link className="btn btnGhost" href="/industri">Lihat Semua Industri</Link></div></div></section>
+      <section>
+        <div className="wrap">
+          <SectionHead
+            eyebrow="SOLUSI INDUSTRI"
+            title={"Solusi yang mengikuti<br/>cara industri Anda bekerja."}
+            body="Gunakan Seara untuk menangani workflow yang berbeda pada setiap industri tanpa kehilangan struktur operasional."
+          />
+          <div className="industryPreviewGrid">
+            {industries.map((item) => {
+              const Icon =
+                industryIconMap[item.slug as keyof typeof industryIconMap] ??
+                Icons.property;
+              return (
+                <Link
+                  href={`/industri/${item.slug}`}
+                  className="industryPreview"
+                  key={item.slug}
+                >
+                  <span className="industryPreviewIcon"><Icon /></span>
+                  <span className="industryPreviewCopy">
+                    <strong>{item.title}</strong>
+                    <small>{item.navDescription}</small>
+                  </span>
+                  <b>→</b>
+                </Link>
+              );
+            })}
+          </div>
+          <div className="centerAction">
+            <Link className="btn btnGhost" href="/industri">
+              Lihat Semua Industri
+            </Link>
+          </div>
+        </div>
+      </section>
 
       <section><div className="wrap"><div className="darkBand"><div><span className="eyebrow">SEARA CRM</span><h2>Semua percakapan. Satu customer workspace.</h2><p className="lead">Hubungkan WhatsApp, Instagram, Email, Telegram, lead distribution, round robin, multi-unit, escalation, dan analytics dalam satu CRM.</p><div className="heroActions"><Link className="btn btnBlue" href="/crm">Jelajahi Seara CRM →</Link><Link className="btn btnGhost darkGhost" href="/crm/contact">Coba Demo</Link></div></div><div className="flow">{[["Channel customer","WhatsApp · Instagram · Email · Telegram"],["Omnichannel Inbox","Centralize"],["Auto Assignment & Round Robin","Distribute"],["Analytics & Performance","Measure"]].map(([a,b],i)=><div key={a}>{i>0&&<div className="flowArrow">↓</div>}<div className="flowItem"><b>{a}</b><span>{b}</span></div></div>)}</div></div></div></section>
 
-      <section className="softSection"><div className="wrap"><SectionHead title={"Terhubung dengan channel<br/>yang digunakan customer."} body="Seara CRM mendukung workflow omnichannel dan integrasi agar data customer tidak berhenti di satu aplikasi."/><div className="integrationGrid"><span>WhatsApp</span><span>Instagram</span><span>Email / Gmail</span><span>Telegram</span><span>Meta Ads</span><span>API & Webhook</span></div></div></section>
+      <section className="softSection integrationSection">
+        <div className="wrap">
+          <SectionHead
+            eyebrow="INTEGRASI"
+            title={"Terhubung dengan channel<br/>yang digunakan customer."}
+            body="Seara CRM mendukung workflow omnichannel dan integrasi agar data customer tidak berhenti di satu aplikasi."
+          />
+          <div className="integrationGrid">
+            {integrationItems.map(([label, Icon]) => (
+              <div className="integrationItem" key={label}>
+                <span><Icon /></span>
+                <strong>{label}</strong>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section><div className="wrap"><SectionHead title={"Kenapa membangun<br/>operasional bersama Seara?"} body="Fokus kami bukan hanya menambah fitur, tetapi membuat alur kerja lebih terlihat, konsisten, dan mudah dikembangkan."/><div className="grid3"><article className="card"><div className="icon">01</div><h3>Modular</h3><p>Mulai dari kebutuhan yang relevan tanpa harus mengadopsi seluruh sistem sekaligus.</p></article><article className="card"><div className="icon">02</div><h3>Terhubung</h3><p>Kurangi fragmentasi antara customer, people, finance, sales, dan operational workflow.</p></article><article className="card"><div className="icon">03</div><h3>Terukur</h3><p>Bangun proses yang lebih mudah dipantau oleh tim, manager, dan owner.</p></article></div></div></section>
 
@@ -59,12 +131,7 @@ export default function Home() {
 
       <section><div className="wrap"><SectionHead title={"Resource untuk membuat<br/>keputusan yang lebih baik."} body="Temukan insight, panduan, webinar, case study, dan template untuk membantu tim memperbaiki workflow."/><div className="grid3">{resources.map((r)=><article className="card" key={r.slug}><h3>{r.title}</h3><p>{r.description}</p><Link className="textLink" href={`/resources/${r.slug}`}>Buka {r.title} →</Link></article>)}</div></div></section>
 
-      <section><div className="wrap"><SectionHead title={"Pertanyaan yang sering<br/>ditanyakan tentang Seara."} body="Ringkasan cepat sebelum Anda menjadwalkan demo dengan tim kami."/><div className="faqSection">
-        <details><summary>Apa itu Seara?</summary><p>Seara adalah ekosistem software operasional yang mencakup HR & Payroll, Finance, CRM, Retail & POS, dan Manufacturing.</p></details>
-        <details><summary>Apakah harus menggunakan semua modul sekaligus?</summary><p>Tidak. Struktur Seara dibuat modular sehingga perusahaan dapat memulai dari kebutuhan yang paling relevan.</p></details>
-        <details><summary>Bagaimana mengetahui modul yang cocok?</summary><p>Gunakan Coba Demo. Tim Seara dapat membantu memetakan workflow, jumlah pengguna, unit, dan kebutuhan integrasi Anda.</p></details>
-        <details><summary>Apakah Seara mendukung bisnis multi-unit?</summary><p>Seara CRM memiliki konsep multi-unit dan multi-tenant. Kebutuhan modul lain dapat dibahas saat konsultasi implementasi.</p></details>
-      </div></div></section>
+      <FAQSection/>
 
       <CTA/>
     </main>

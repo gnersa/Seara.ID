@@ -571,3 +571,516 @@ html[data-theme="dark"] .siteFooter .contactIcon{
 @media(max-width:680px){.industryPreviewGrid,.integrationGrid,.capabilityGrid{grid-template-columns:1fr}.storyCallout{padding:26px;align-items:flex-start;flex-direction:column}.mobileSubGrid{grid-template-columns:1fr}.footerCookieButton{border-left:0;padding:0 10px 0 0;margin-right:10px}.contactHero{padding-top:55px}.heroNote{font-size:10px}}
 
 .legalContent{max-width:860px}.legalContent h2{font-size:26px;margin:34px 0 8px}.legalContent p{color:var(--muted);line-height:1.75}.resourcePageCard,.industryPageCard{color:inherit}.resourcePageCard:hover,.industryPageCard:hover{transform:translateY(-2px);box-shadow:var(--shadow)}
+
+
+/* =========================================================
+   V6 — typography, spacing, industry icons, FAQ & responsive polish
+   ========================================================= */
+
+/* Typography system: closer to Apple-style proportions without custom font files */
+html{
+  font-size:16px;
+  text-size-adjust:100%;
+  -webkit-text-size-adjust:100%;
+}
+body{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","SF Pro Display","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  font-size:16px;
+  font-weight:400;
+  line-height:1.5;
+  letter-spacing:-.006em;
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  text-rendering:optimizeLegibility;
+  font-synthesis:none;
+}
+
+h1,h2,h3,h4,p{overflow-wrap:break-word}
+h1,h2,h3,h4{
+  font-family:-apple-system,BlinkMacSystemFont,"SF Pro Display","SF Pro Text","Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+  text-wrap:balance;
+}
+h1{
+  font-size:clamp(48px,4.75vw,68px);
+  line-height:1.015;
+  font-weight:700;
+  letter-spacing:-.045em;
+  margin:24px 0 22px;
+  max-width:880px;
+}
+h2{
+  font-size:clamp(34px,3.15vw,46px);
+  line-height:1.07;
+  font-weight:700;
+  letter-spacing:-.035em;
+  margin:0;
+}
+h3{
+  font-size:21px;
+  line-height:1.18;
+  font-weight:650;
+  letter-spacing:-.025em;
+}
+.lead{
+  font-size:18px;
+  line-height:1.58;
+  letter-spacing:-.01em;
+}
+.eyebrow,.sectionEyebrow{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:.095em;
+}
+.brand{font-weight:700}
+.navLinks,.navLogin,.btn{font-weight:600}
+
+/* Better vertical rhythm */
+section{padding:88px 0}
+.hero{
+  min-height:640px;
+  padding:86px 0 76px;
+  gap:64px;
+}
+.heroSingle{
+  max-width:900px;
+  padding:94px 0 56px;
+}
+.heroSingle h1{margin-left:auto;margin-right:auto}
+.heroSingle .lead{max-width:720px}
+.softSection{padding:88px 0}
+.ctaSection{padding-top:76px;padding-bottom:96px}
+
+/* Section heading: constrained, balanced, no huge headline taking 60% of viewport */
+.sectionHead{
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(300px,.62fr);
+  gap:64px;
+  align-items:end;
+  margin-bottom:42px;
+}
+.sectionHeadTitle{max-width:720px}
+.sectionHead h2{
+  max-width:720px;
+}
+.sectionHead p{
+  width:100%;
+  max-width:470px;
+  justify-self:end;
+  font-size:16px;
+  line-height:1.6;
+  letter-spacing:-.008em;
+}
+.sectionEyebrow{
+  display:block;
+  color:var(--blue);
+  margin-bottom:12px;
+}
+
+/* Cards */
+.card,.priceCard{
+  padding:28px;
+  border-radius:22px;
+}
+.card h3{margin:18px 0 8px}
+.card p{
+  margin:0;
+  font-size:14px;
+  line-height:1.6;
+}
+.icon{
+  width:46px;height:46px;border-radius:14px;
+}
+
+/* Integration section: no oversized title; visual channel items */
+.integrationSection .sectionHead{margin-bottom:34px}
+.integrationGrid{
+  grid-template-columns:repeat(6,minmax(0,1fr));
+  gap:10px;
+}
+.integrationGrid .integrationItem{
+  min-height:104px;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:14px;
+  padding:20px;
+  border-radius:18px;
+  background:var(--surface-solid);
+  border:1px solid var(--line);
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.integrationGrid .integrationItem:hover{
+  transform:translateY(-2px);
+  border-color:rgba(5,97,233,.24);
+  box-shadow:0 14px 32px rgba(15,23,42,.07);
+}
+.integrationItem>span{
+  width:40px;height:40px;
+  display:grid;place-items:center;
+  padding:0;
+  border:0;
+  border-radius:12px;
+  color:var(--blue);
+  background:var(--blue-soft);
+}
+.integrationItem svg{width:21px;height:21px}
+.integrationItem strong{
+  font-size:13px;
+  font-weight:650;
+  letter-spacing:-.01em;
+}
+
+/* Homepage industry cards with minimal icons */
+.industryPreviewGrid{
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:12px;
+}
+.industryPreview{
+  grid-template-columns:48px minmax(0,1fr) auto;
+  grid-template-rows:auto;
+  align-items:center;
+  gap:0 13px;
+  min-height:104px;
+  padding:17px;
+  border-radius:19px;
+}
+.industryPreviewIcon{
+  width:46px;height:46px;
+  grid-column:1;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  color:var(--soft-ink);
+  background:var(--bg-soft);
+}
+.industryPreviewIcon svg{width:24px;height:24px}
+.industryPreviewCopy{
+  grid-column:2;
+  min-width:0;
+}
+.industryPreviewCopy strong{
+  display:block;
+  font-size:14px;
+  line-height:1.25;
+  margin-bottom:4px;
+}
+.industryPreviewCopy small{
+  display:block;
+  color:var(--muted);
+  font-size:11px;
+  line-height:1.42;
+}
+.industryPreview>b{
+  grid-column:3;
+  grid-row:auto;
+  align-self:center;
+  color:var(--muted);
+  font-size:13px;
+}
+.industryPreview:hover .industryPreviewIcon{
+  color:var(--blue);
+  background:var(--blue-soft);
+}
+.industryPreview:hover>b{color:var(--blue)}
+
+/* Industry hub: visible icon + clean layout */
+.industryHubSection{padding-top:40px}
+.industryPageGrid{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:14px;
+}
+.industryPageCard{
+  min-height:150px;
+  display:grid;
+  grid-template-columns:58px minmax(0,1fr);
+  gap:18px;
+  align-items:start;
+  padding:24px;
+  border-radius:22px;
+  background:var(--surface-solid);
+  border:1px solid var(--line);
+  transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;
+}
+.industryPageCard:hover{
+  transform:translateY(-2px);
+  border-color:rgba(5,97,233,.22);
+  box-shadow:0 15px 34px rgba(15,23,42,.07);
+}
+.industryPageIcon{
+  width:56px;height:56px;
+  display:grid;
+  place-items:center;
+  border-radius:16px;
+  background:var(--bg-soft);
+  color:var(--soft-ink);
+}
+.industryPageIcon svg{width:28px;height:28px}
+.industryCardContent{min-width:0}
+.industryCardContent strong{
+  display:block;
+  margin:2px 0 6px;
+  color:var(--ink);
+  font-size:20px;
+  font-weight:650;
+  letter-spacing:-.025em;
+}
+.industryCardContent small{
+  display:block;
+  max-width:390px;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.55;
+}
+.industryCardContent b{
+  display:inline-block;
+  margin-top:14px;
+  color:var(--blue);
+  font-size:11px;
+  font-weight:650;
+}
+.industryPageCard:hover .industryPageIcon{
+  background:var(--blue-soft);
+  color:var(--blue);
+}
+
+/* CRM channel cards */
+.channelCardGrid{align-items:stretch}
+.channelCard{
+  min-height:215px;
+}
+.channelCardIcon{
+  width:48px;height:48px;
+  display:grid;
+  place-items:center;
+  border-radius:14px;
+  color:var(--blue);
+  background:var(--blue-soft);
+}
+.channelCardIcon svg{width:24px;height:24px}
+.channelCard h3{margin-top:22px}
+
+/* FAQ: proper two-column editorial layout */
+.faqBlock{
+  padding:100px 0;
+  background:var(--bg-soft);
+  border-top:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.faqLayout{
+  display:grid;
+  grid-template-columns:minmax(0,.72fr) minmax(520px,1.05fr);
+  gap:86px;
+  align-items:start;
+}
+.faqIntro{
+  position:sticky;
+  top:110px;
+  max-width:460px;
+}
+.faqIntro h2{
+  margin-top:0;
+  max-width:460px;
+}
+.faqIntro p{
+  margin:18px 0 0;
+  max-width:420px;
+  color:var(--muted);
+  font-size:15px;
+  line-height:1.65;
+}
+.faqContactLink{margin-top:22px}
+.faqSection{
+  display:grid;
+  gap:10px;
+  max-width:none;
+  margin:0;
+}
+.faqSection details{
+  padding:0;
+  overflow:hidden;
+  background:var(--surface-solid);
+  border:1px solid var(--line);
+  border-radius:18px;
+  transition:border-color .18s ease,box-shadow .18s ease;
+}
+.faqSection details[open]{
+  border-color:rgba(5,97,233,.22);
+  box-shadow:0 12px 30px rgba(15,23,42,.055);
+}
+.faqSection summary{
+  list-style:none;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:20px;
+  min-height:72px;
+  padding:20px 22px;
+  cursor:pointer;
+  font-size:16px;
+  line-height:1.35;
+  font-weight:600;
+  letter-spacing:-.014em;
+}
+.faqSection summary::-webkit-details-marker{display:none}
+.faqSection summary::marker{display:none}
+.faqSection summary i{
+  width:30px;height:30px;
+  flex:none;
+  position:relative;
+  border-radius:50%;
+  background:var(--bg-soft);
+}
+.faqSection summary i::before,
+.faqSection summary i::after{
+  content:"";
+  position:absolute;
+  left:50%;top:50%;
+  width:12px;height:1.5px;
+  border-radius:2px;
+  background:var(--soft-ink);
+  transform:translate(-50%,-50%);
+}
+.faqSection summary i::after{
+  transform:translate(-50%,-50%) rotate(90deg);
+  transition:transform .18s ease;
+}
+.faqSection details[open] summary i::after{
+  transform:translate(-50%,-50%) rotate(0deg);
+}
+.faqAnswer{
+  border-top:1px solid var(--line);
+  padding:17px 22px 20px;
+}
+.faqSection details p{
+  max-width:650px;
+  margin:0;
+  padding:0;
+  color:var(--muted);
+  font-size:14px;
+  line-height:1.7;
+}
+
+/* Story callout typographic correction */
+.storyCallout h2{
+  font-size:clamp(32px,3vw,43px);
+  line-height:1.08;
+}
+
+/* Desktop large displays: keep content from feeling stretched */
+@media(min-width:1440px){
+  :root{--max:1200px}
+  .hero{min-height:650px}
+}
+
+/* Tablet */
+@media(max-width:1080px){
+  h1{font-size:clamp(46px,6vw,60px)}
+  h2{font-size:clamp(34px,4.3vw,44px)}
+  .sectionHead{
+    grid-template-columns:1fr;
+    gap:18px;
+    align-items:start;
+  }
+  .sectionHead p{
+    justify-self:start;
+    max-width:650px;
+  }
+  .industryPreviewGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .integrationGrid{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .faqLayout{
+    grid-template-columns:1fr;
+    gap:34px;
+  }
+  .faqIntro{
+    position:static;
+    max-width:650px;
+  }
+  .faqIntro h2{max-width:650px}
+  .faqIntro p{max-width:600px}
+}
+
+/* Mobile / small tablet */
+@media(max-width:680px){
+  body{font-size:15px}
+  .wrap{width:min(var(--max),calc(100% - 32px))}
+  h1{
+    font-size:clamp(39px,11.2vw,48px);
+    line-height:1.035;
+    letter-spacing:-.043em;
+    margin:19px 0 17px;
+  }
+  h2{
+    font-size:clamp(30px,8.5vw,37px);
+    line-height:1.075;
+    letter-spacing:-.034em;
+  }
+  h3{font-size:19px}
+  .lead{
+    font-size:16px;
+    line-height:1.58;
+  }
+  section{padding:64px 0}
+  .hero{
+    padding:48px 0 58px;
+    gap:34px;
+  }
+  .heroSingle{
+    padding:62px 0 34px;
+  }
+  .sectionHead{
+    gap:15px;
+    margin-bottom:28px;
+  }
+  .sectionHead p{
+    font-size:14px;
+    line-height:1.58;
+  }
+  .sectionEyebrow{margin-bottom:9px}
+  .card,.priceCard{padding:22px}
+  .integrationGrid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .integrationGrid .integrationItem{
+    min-height:94px;
+    padding:16px;
+  }
+  .industryPreviewGrid{grid-template-columns:1fr}
+  .industryPreview{
+    min-height:92px;
+    padding:15px;
+  }
+  .industryPageGrid{grid-template-columns:1fr}
+  .industryPageCard{
+    grid-template-columns:50px minmax(0,1fr);
+    min-height:auto;
+    padding:19px;
+    gap:14px;
+  }
+  .industryPageIcon{width:50px;height:50px;border-radius:14px}
+  .industryPageIcon svg{width:25px;height:25px}
+  .industryCardContent strong{font-size:18px}
+  .industryCardContent small{font-size:13px}
+  .channelCard{min-height:auto}
+  .faqBlock{padding:70px 0}
+  .faqLayout{gap:28px}
+  .faqIntro h2{max-width:none}
+  .faqIntro p{font-size:14px}
+  .faqSection summary{
+    min-height:66px;
+    padding:17px;
+    font-size:14px;
+  }
+  .faqSection summary i{width:28px;height:28px}
+  .faqAnswer{padding:15px 17px 18px}
+  .faqSection details p{font-size:13px}
+  .ctaSection{padding-top:58px;padding-bottom:72px}
+}
+
+/* Very small mobile */
+@media(max-width:390px){
+  h1{font-size:38px}
+  h2{font-size:30px}
+  .wrap{width:calc(100% - 26px)}
+  .integrationGrid{grid-template-columns:1fr}
+  .industryPreviewIcon{width:42px;height:42px}
+  .industryPreview{grid-template-columns:42px minmax(0,1fr) auto}
+}

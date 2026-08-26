@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Brand } from "./Brand";
 import { Icons } from "./Icons";
 import { ThemeSwitcher } from "./ThemeSwitcher";
@@ -79,6 +79,15 @@ function ResourceMega() {
 
 export function Header({ crm = false }: { crm?: boolean }) {
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      document.body.style.overflow = previous;
+    };
+  }, [mobileOpen]);
 
   return (
     <header className="nav">

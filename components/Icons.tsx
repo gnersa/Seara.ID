@@ -84,4 +84,28 @@ export const Icons = {
   template: (p: Props) => (
     <IconBase {...p}><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M4 9h16M9 9v11"/></IconBase>
   ),
+  instagram: (p: Props) => (
+    <IconBase {...p}>
+      <rect x="4" y="4" width="16" height="16" rx="5"/>
+      <circle cx="12" cy="12" r="3.5"/>
+      <circle cx="17.4" cy="6.7" r=".8" fill="currentColor" stroke="none"/>
+    </IconBase>
+  ),
+  telegram: (p: Props) => (
+    <IconBase {...p}>
+      <path d="m3 11 17-7-4 16-5-5-3 3 .7-5.2L18 6.5 8.7 12.8 3 11Z"/>
+    </IconBase>
+  ),
+  ads: (p: Props) => (
+    <IconBase {...p}>
+      <path d="M4 13V9l12-5v14L4 13Z"/>
+      <path d="M16 9h2a3 3 0 0 1 0 6h-2M6 14l1 6h4l-2-5"/>
+    </IconBase>
+  ),
+  api: (p: Props) => (
+    <IconBase {...p}>
+      <path d="m8 8-4 4 4 4M16 8l4 4-4 4M14 4l-4 16"/>
+    </IconBase>
+  ),
+
 };
