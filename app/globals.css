@@ -11,3 +11,71 @@ section{padding:78px 0}.sectionHead{display:flex;justify-content:space-between;a
 footer{padding:45px 0 55px;color:#667085}.footerGrid{display:grid;grid-template-columns:1.6fr repeat(3,1fr);gap:30px}.footerIntro{max-width:300px;font-size:13px}.footerCol h4{font-size:12px;color:#344054;margin:0 0 12px}.footerCol a{display:block;font-size:13px;margin:8px 0}.copyright{border-top:1px solid var(--line);margin-top:30px;padding-top:18px;font-size:11px}
 @media(max-width:960px){.navLinks{display:none}.hero,.darkBand{grid-template-columns:1fr}.hero{padding-top:60px}.grid3,.priceGrid{grid-template-columns:1fr 1fr}.footerGrid{grid-template-columns:1fr 1fr}.sectionHead{align-items:start;flex-direction:column}.visual{transform:none}.mega{display:none!important}}
 @media(max-width:640px){.wrap{width:min(var(--max),calc(100% - 24px))}.navActions .btnGhost{display:none}.hero{min-height:auto;padding:55px 0}.heroSingle{padding:65px 0 35px}h1{font-size:49px}.kpis{grid-template-columns:1fr 1fr}.kpi:last-child{grid-column:1/-1}.miniGrid,.grid2,.grid3,.priceGrid,.compare{grid-template-columns:1fr}.darkBand{padding:28px}.footerGrid{grid-template-columns:1fr}section{padding:56px 0}}
+
+
+/* ===== Header V2 — seara.id ===== */
+.nav {
+  background: rgba(255,255,255,.82);
+  border-bottom: 1px solid rgba(255,255,255,.6);
+  box-shadow: 0 8px 35px rgba(15,23,42,.06);
+}
+.navInner { height: 82px; }
+.navLinks { gap: 29px; font-weight: 650; }
+.navLinks > a, .megaTrigger > a { padding: 29px 0; }
+.navLogin {
+  display:flex;align-items:center;padding:10px 4px;font-size:14px;
+  font-weight:750;color:#1d4ed8;white-space:nowrap;
+}
+.langSwitcher {display:flex;align-items:center;gap:5px;white-space:nowrap;color:#344054}
+.globeIcon {font-size:17px;line-height:1;color:#475467}
+.langCurrent {
+  appearance:none;border:0;background:transparent;cursor:pointer;
+  font:inherit;font-size:13px;font-weight:750;color:#344054;padding:8px 3px;
+}
+.btnWhatsApp {
+  border:1.5px solid #2563eb;background:#fff;color:#1554c9;
+  border-radius:12px;padding:11px 17px;font-size:13px;
+}
+.btnWhatsApp:hover {background:#eff6ff}
+.waIcon {
+  width:19px;height:19px;border:1.5px solid currentColor;border-radius:50%;
+  display:inline-grid;place-items:center;font-size:9px;
+}
+.btnTrial {
+  border-radius:12px;background:linear-gradient(135deg,#2563eb,#1748c5);
+  color:#fff;padding:12px 20px;box-shadow:0 9px 24px rgba(37,99,235,.22)
+}
+.megaProducts{width:670px;left:-120px}
+.megaProductLink {
+  display:grid;grid-template-columns:39px 1fr auto;align-items:center;gap:11px;
+  padding:10px;border-radius:12px;color:#344054;
+}
+.megaProductLink:hover,.simpleMegaLink:hover{background:#f5f8ff}
+.megaProductLink strong{display:block;font-size:13px}
+.megaProductLink small{display:block;font-size:10px;color:#98a2b3;margin-top:1px}
+.megaIcon {
+  width:36px;height:36px;border-radius:11px;background:#eef4ff;color:#2563eb;
+  display:grid;place-items:center;font-size:10px;font-weight:850
+}
+.megaProductLink b,.simpleMegaLink b{color:#98a2b3;font-size:11px}
+.compactMega{width:560px;left:-180px;grid-template-columns:1fr}
+.industryGrid{display:grid;grid-template-columns:1fr 1fr;gap:3px}
+.simpleMegaLink{
+  display:flex;justify-content:space-between;align-items:center;padding:10px 11px;
+  border-radius:10px;color:#344054;font-size:13px;font-weight:650
+}
+.resourceMega{width:310px;left:-100px;grid-template-columns:1fr}
+.megaFooterLink{
+  display:inline-block;margin:11px 10px 3px;color:#2563eb;font-size:11px;font-weight:800
+}
+.industryCard{min-height:210px}
+
+@media(max-width:1120px){
+  .navLinks{gap:18px}
+  .navActions{gap:5px}
+  .btnWhatsApp{padding:10px 12px}
+}
+@media(max-width:960px){
+  .navActions .btnWhatsApp,.navActions .navLogin,.navActions .langSwitcher{display:none}
+  .navActions .btnTrial{display:inline-flex}
+}

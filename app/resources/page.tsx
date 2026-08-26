@@ -1,2 +1,43 @@
-import {Header} from "@/components/Header";import {Footer} from "@/components/Footer";export const metadata={title:"Resources"};const x=[["B","Blog","Insight operasional dan teknologi bisnis."],["G","Guides","Panduan praktis HR, finance, CRM, dan sales."],["W","Webinar","Materi edukasi dan sharing operasional."],["S","Stories","Case study dan customer stories."],["T","Templates","Workflow, KPI, CRM, dan operational checklist."]];
-export default function Page(){return <><Header/><main><div className="wrap heroSingle"><span className="eyebrow">RESOURCES</span><h1>Learn better <span className="gradient">business operations.</span></h1><p className="lead">Resource hub untuk HR, Finance, CRM, sales, dan digital transformation.</p></div><section><div className="wrap grid3">{x.map(a=><article className="card" key={a[1]}><div className="icon">{a[0]}</div><h3>{a[1]}</h3><p>{a[2]}</p></article>)}</div></section></main><Footer/></>;}
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+
+export const metadata = { title: "Resource" };
+
+const resources = [
+  ["blog", "BL", "Blog", "Insight terbaru mengenai operasional, CRM, HR, finance, sales, dan transformasi digital."],
+  ["guides", "GD", "Guides", "Panduan praktis untuk membantu implementasi proses dan sistem yang lebih terstruktur."],
+  ["webinar", "WB", "Webinar", "Diskusi, edukasi, dan sharing bersama praktisi bisnis dan operasional."],
+  ["stories", "ST", "Stories", "Cerita, case study, dan pengalaman penerapan solusi Seara."],
+  ["templates", "TP", "Templates", "Template workflow, KPI, CRM, checklist, dan tools operasional siap pakai."],
+];
+
+export default function Page() {
+  return (
+    <>
+      <Header />
+      <main>
+        <div className="wrap heroSingle">
+          <span className="eyebrow">RESOURCE</span>
+          <h1>Resources untuk membangun <span className="gradient">operasional yang lebih baik.</span></h1>
+          <p className="lead">
+            Pelajari strategi, workflow, dan teknologi untuk meningkatkan customer, sales, HR, finance, dan operasional bisnis.
+          </p>
+        </div>
+
+        <section>
+          <div className="wrap grid3">
+            {resources.map(([id, icon, title, body]) => (
+              <article className="card" id={id} key={id}>
+                <div className="icon">{icon}</div>
+                <h3>{title}</h3>
+                <p>{body}</p>
+                <a href="#" className="textLink">Explore {title} →</a>
+              </article>
+            ))}
+          </div>
+        </section>
+      </main>
+      <Footer />
+    </>
+  );
+}

@@ -78,3 +78,38 @@ git branch -M main
 git remote add origin YOUR_GITHUB_REPOSITORY_URL
 git push -u origin main
 ```
+
+
+## Header / Navbar V2
+
+Main `seara.id` navigation now uses:
+
+- Produk
+  - HR & Payroll
+  - Finance
+  - CRM
+  - Retail & POS
+  - Manufacturing
+- Industri
+  - Kesehatan
+  - Pendidikan
+  - Properti
+  - Tour & Travel
+  - Salon & Kecantikan
+  - F&B
+  - Pemerintahan
+  - Logistik
+- Harga
+- Resource
+  - Blog
+  - Guides
+  - Webinar
+  - Stories
+  - Templates
+- ID/EN UI language switch
+- Login
+- WhatsApp Kami
+- Coba Gratis
+
+Note: replace the placeholder `https://wa.me/` URL in `components/Header.tsx`
+with the official Seara WhatsApp number before production.
