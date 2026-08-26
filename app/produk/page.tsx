@@ -1,8 +1,20 @@
-import Link from "next/link";import {Header} from "@/components/Header";import {Footer} from "@/components/Footer";import {CTA} from "@/components/Sections";
-const items=[["hr","HR","HR & Payroll","Employee lifecycle, attendance, payroll, dan people operations."],["finance","FI","Finance","Financial workflow, reconciliation, reporting, dan control."],["crm","CR","Sales & CRM","Lead, customer, omnichannel, sales workflow, dan performance."],["retail","PO","Retail & POS","Retail operation, transactions, outlet, dan point-of-sale."],["manufacturing","MF","Manufacturing","Production workflow dan operational visibility."]];
+import Link from "next/link";
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { CTA } from "@/components/Sections";
+import { JsonLd, breadcrumbSchema } from "@/components/JsonLd";
+import { products } from "@/lib/site-data";
+
 export const metadata = {
   title: "Produk ERP — HR, Finance, CRM, Retail & Manufacturing",
   description: "Jelajahi produk Seara: HR & Payroll, Finance, CRM, Retail & POS, dan Manufacturing untuk mengelola operasional bisnis dalam satu ekosistem.",
   alternates: { canonical: "https://seara.id/produk" },
 };
-export default function Page(){return <><Header/><main><div className="wrap heroSingle"><span className="eyebrow">PRODUCTS</span><h1>Operational tools that <span className="gradient">work together.</span></h1><p className="lead">Seara menghubungkan fungsi penting bisnis dalam satu ekosistem teknologi.</p></div><section><div className="wrap grid3">{items.map(([id,ic,t,b])=><article className="card" id={id} key={id}><div className="icon">{ic}</div><h3>{t}</h3><p>{b}</p>{id==="crm"&&<Link href="/crm" className="textLink">Explore Seara CRM →</Link>}</article>)}</div></section><CTA/></main><Footer/></>;}
+
+export default function Page(){
+  return <><JsonLd data={breadcrumbSchema([{name:"Beranda",url:"https://seara.id"},{name:"Produk",url:"https://seara.id/produk"}])}/><Header/><main>
+    <div className="wrap heroSingle"><span className="eyebrow">PRODUK</span><h1>Operational tools yang <span className="gradient">bekerja sebagai satu sistem.</span></h1><p className="lead">Pilih modul yang relevan untuk people, finance, customer, retail, dan production workflow.</p></div>
+    <section><div className="wrap grid3">{products.map((p)=><article className="card productCard" key={p.slug}><div className="icon">{p.icon}</div><h3>{p.title}</h3><p>{p.description}</p><Link className="textLink" href={p.slug === "crm" ? "/crm" : `/produk/${p.slug}`}>Pelajari {p.title} →</Link></article>)}</div></section>
+    <CTA/>
+  </main><Footer/></>;
+}

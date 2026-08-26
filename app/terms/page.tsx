@@ -1,24 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-
-export const metadata = {
-  title: "Syarat & Ketentuan",
-  description: "Syarat dan Ketentuan penggunaan website, produk, dan layanan Seara.",
-  alternates: { canonical: "https://seara.id/terms" },
-};
-
-export default function Page() {
-  return (
-    <>
-      <Header />
-      <main>
-        <div className="wrap heroSingle legalHero">
-          <span className="eyebrow">LEGAL</span>
-          <h1>Syarat & Ketentuan</h1>
-          <p className="lead">Informasi lengkap akan disesuaikan dengan kebijakan legal resmi SEARA.</p>
-        </div>
-      </main>
-      <Footer />
-    </>
-  );
-}
+import { Header } from "@/components/Header";import { Footer } from "@/components/Footer";
+export const metadata={title:"Syarat & Ketentuan",description:"Syarat dan Ketentuan umum penggunaan website dan informasi produk Seara.",alternates:{canonical:"https://seara.id/terms"}};
+export default function Page(){return <><Header/><main><div className="wrap heroSingle legalHero"><span className="eyebrow">LEGAL</span><h1>Syarat & Ketentuan</h1><p className="lead">Ketentuan umum penggunaan website Seara. Ketentuan komersial produk mengikuti perjanjian atau penawaran resmi yang disepakati dengan pelanggan.</p></div><section><div className="wrap legalContent"><h2>Informasi website</h2><p>Konten website menjelaskan produk dan kapabilitas Seara secara umum. Detail fitur, kapasitas, harga, dan implementasi dapat berbeda sesuai paket dan kesepakatan.</p><h2>Harga dan penawaran</h2><p>Harga yang ditampilkan bersifat informatif kecuali dinyatakan sebagai penawaran resmi. Konfirmasi detail komersial dilakukan bersama tim Seara.</p><h2>Penggunaan yang wajar</h2><p>Pengguna tidak boleh mencoba mengganggu keamanan, ketersediaan, atau fungsi website dan layanan Seara.</p><h2>Kontak</h2><p>Untuk pertanyaan mengenai ketentuan, hubungi Info@seara.id.</p></div></section></main><Footer/></>}

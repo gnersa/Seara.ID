@@ -1,81 +1,175 @@
-# Seara Website V4 — Next.js / Vercel Ready
+# Seara Website V5 — Next.js / Vercel Ready
 
-## Main improvements in V4
+V5 focuses on production readiness, conversion flow, mobile usability, technical SEO, and richer landing-page architecture.
 
-### Navigation
-- Produk, Industri, Resource mega menus open on hover.
-- Mega menus are centered relative to the whole navbar.
-- Maximum 4-column layout on desktop.
-- Right-side FEATURED panels removed.
-- Indonesian/English language selector removed.
-- Default language is Indonesian.
-- Theme switcher now contains only:
-  - Light
-  - Dark
-- First visit still follows the user's OS/system color preference.
+## Main improvements
 
-### Footer
-Contact information is now placed under the Seara company description on the lower-left side:
-- WhatsApp: +6285175380890
-- Email: Info@seara.id
-- Location: Bandung, Jawa Barat
+### UX & Conversion
+- Apple-inspired light/dark UI retained.
+- Full mobile navigation drawer for Products, Industries, Pricing, Resources, Login, WhatsApp, and Demo.
+- CTA standardized to **Coba Demo** so it does not imply an instant free account.
+- Demo forms now work: submitted data is composed into a WhatsApp message to `+6285175380890`.
+- Email alternative links directly to `Info@seara.id`.
+- Dashboard numbers are explicitly marked **DEMO DATA** to avoid presenting mock values as business claims.
+- Live chat is lazy-loaded: the chat panel code is loaded only after the visitor opens the widget.
+- FAQ accordion and direct WhatsApp messaging remain available in Live Chat.
+- Functional Cookie Settings modal stores preferences in localStorage.
 
-WhatsApp and email are clickable.
-Icons are minimal monochrome icons that match the footer theme.
+### Homepage depth
+Homepage now includes:
+1. Hero
+2. Operational audience strip
+3. Business pain points
+4. Seara ecosystem overview
+5. Product overview
+6. Industry solutions
+7. Seara CRM feature section
+8. CRM integration channels
+9. Why Seara
+10. Customer Stories entry point
+11. Resource hub preview
+12. FAQ
+13. Final CTA
+14. Footer
 
-Bottom footer:
-- © 2026 SEARA, Inc. All rights reserved.
-- Kebijakan Privasi
-- Syarat & Ketentuan
-- Cookie Settings
+No unverified customer logos or testimonials are fabricated. Add real customer evidence when approved.
 
-### Live Chat
-Floating live chat widget includes:
-- FAQ accordion
-- Free-text message box
-- "Kirim Pesan ke Tim" action
-- Message is sent directly through WhatsApp to +6285175380890
+## SEO route architecture
 
-### SEO metadata
-Custom title, description, and canonical URL have been added for:
-- /
-- /produk
-- /industri
-- /harga
-- /resources
-- /about
-- /contact
-- /privacy
-- /terms
-- crm.seara.id
-- crm.seara.id/fitur
-- crm.seara.id/solusi
-- crm.seara.id/harga
-- crm.seara.id/contact
+### Main website
+- `/`
+- `/produk`
+- `/produk/hr-payroll`
+- `/produk/finance`
+- `/produk/retail-pos`
+- `/produk/manufacturing`
+- `/industri`
+- `/industri/kesehatan`
+- `/industri/pendidikan`
+- `/industri/properti`
+- `/industri/tour-travel`
+- `/industri/salon-kecantikan`
+- `/industri/fnb`
+- `/industri/pemerintahan`
+- `/industri/logistik`
+- `/harga`
+- `/resources`
+- `/resources/blog`
+- `/resources/guides`
+- `/resources/webinar`
+- `/resources/stories`
+- `/resources/templates`
+- `/about`
+- `/contact`
+- `/privacy`
+- `/terms`
 
-Sitemap is also updated with main-site and CRM public URLs.
+### CRM public hostname
+- `https://crm.seara.id/`
+- `https://crm.seara.id/fitur`
+- `https://crm.seara.id/solusi`
+- `https://crm.seara.id/harga`
+- `https://crm.seara.id/contact`
 
-## Run locally
+The same repository serves both `seara.id` and `crm.seara.id` using `proxy.ts`.
+
+## Meta titles & descriptions
+Every main route has dedicated metadata. Dynamic Product, Industry, and Resource paths generate their own title, description, canonical URL, and Open Graph metadata from `lib/site-data.ts`.
+
+## Structured data / LD+JSON
+V5 includes:
+
+### Global Publisher / Organization
+- `Organization`
+- Legal name: `SEARA, Inc.`
+- URL: `https://seara.id`
+- Logo
+- Publisher ID: `https://seara.id/#organization`
+- Email: `Info@seara.id`
+- Phone: `+6285175380890`
+- Address: Bandung, Jawa Barat, Indonesia
+- Sales `ContactPoint`
+
+### WebSite
+The main WebSite schema includes:
+
+```json
+"publisher": {
+  "@id": "https://seara.id/#organization"
+}
+```
+
+### Per-page schema
+- `WebPage`
+- `BreadcrumbList`
+- `SoftwareApplication` on product/software pages
+- `CollectionPage` on Resource landing pages
+- `FAQPage` on homepage
+- Seara CRM SoftwareApplication schema with publisher reference
+
+## Staging SEO protection
+`*.vercel.app`, localhost, and local preview responses receive:
+
+```text
+X-Robots-Tag: noindex, nofollow, noarchive
+```
+
+This prevents the Vercel staging domain from competing with `seara.id` in search engines.
+
+Production domains stay indexable.
+
+## Separate sitemap / robots
+
+### Main
+- `https://seara.id/sitemap.xml`
+- `https://seara.id/robots.txt`
+
+### CRM
+- `https://crm.seara.id/sitemap.xml`
+- `https://crm.seara.id/robots.txt`
+
+`proxy.ts` routes CRM sitemap and robots requests to CRM-specific handlers.
+
+## Security headers
+`next.config.ts` adds:
+- Content-Security-Policy
+- Strict-Transport-Security
+- X-Content-Type-Options
+- X-Frame-Options
+- Referrer-Policy
+- Permissions-Policy
+
+Review the CSP if you later add Google Analytics, Meta Pixel, third-party chat, CDN assets, or embedded video.
+
+## Open Graph
+`app/opengraph-image.tsx` generates a 1200×630 Seara social preview image automatically.
+
+## Theme
+- Initial first visit follows OS theme.
+- User-facing choices: **Light** and **Dark** only.
+- Explicit choice persists in localStorage.
+
+## Deployment
 
 ```bash
 npm install
-npm run dev
+npm run build
 ```
 
-Main site:
-http://localhost:3000
+Then push to the GitHub repository already connected to Vercel.
 
-CRM local preview:
-http://localhost:3000/crm
+```bash
+git add .
+git commit -m "Upgrade Seara website to V5"
+git push
+```
 
-## Deploy to Vercel
+Vercel should redeploy automatically.
 
-1. Extract this ZIP.
-2. Replace/push the project files into your existing GitHub repository.
-3. Commit and push.
-4. Vercel automatically rebuilds when the repository is already connected.
-5. Connect `seara.id` and `crm.seara.id` to the same Vercel project.
-
-## Important
-The contact/demo form is still UI-only. Connect it to your preferred backend/API when ready.
-The Cookie Settings button is visual only until a consent-management platform is connected.
+## Production checklist
+Before moving the custom domains live:
+- Add real product screenshots to `/public` and replace generic dashboard illustrations where appropriate.
+- Add approved customer logos/testimonials/case studies only when verified.
+- Confirm CRM price limits and commercial terms.
+- Connect analytics only after updating CSP and cookie-consent behavior.
+- Review legal pages with the appropriate internal/legal owner.

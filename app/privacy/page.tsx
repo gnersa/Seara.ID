@@ -1,24 +1,3 @@
-import { Header } from "@/components/Header";
-import { Footer } from "@/components/Footer";
-
-export const metadata = {
-  title: "Kebijakan Privasi",
-  description: "Kebijakan Privasi Seara mengenai penggunaan situs, data, dan layanan.",
-  alternates: { canonical: "https://seara.id/privacy" },
-};
-
-export default function Page() {
-  return (
-    <>
-      <Header />
-      <main>
-        <div className="wrap heroSingle legalHero">
-          <span className="eyebrow">LEGAL</span>
-          <h1>Kebijakan Privasi</h1>
-          <p className="lead">Informasi lengkap akan disesuaikan dengan kebijakan legal resmi SEARA.</p>
-        </div>
-      </main>
-      <Footer />
-    </>
-  );
-}
+import { Header } from "@/components/Header";import { Footer } from "@/components/Footer";
+export const metadata={title:"Kebijakan Privasi",description:"Kebijakan Privasi website Seara mengenai informasi kontak, preferensi browser, tautan eksternal, dan penggunaan data.",alternates:{canonical:"https://seara.id/privacy"}};
+export default function Page(){return <><Header/><main><div className="wrap heroSingle legalHero"><span className="eyebrow">LEGAL</span><h1>Kebijakan Privasi</h1><p className="lead">Ringkasan penggunaan data pada website Seara. Kebijakan ini perlu diperbarui jika analytics, advertising pixel, atau pemrosesan data tambahan diaktifkan.</p></div><section><div className="wrap legalContent"><h2>Informasi yang Anda kirim</h2><p>Ketika menggunakan form demo atau live chat, website membantu menyusun pesan dan mengarahkan Anda ke WhatsApp atau email. Informasi selanjutnya diproses pada layanan yang Anda pilih.</p><h2>Preferensi browser</h2><p>Website dapat menyimpan preferensi tema dan cookie di localStorage browser agar pengalaman tetap konsisten pada kunjungan berikutnya.</p><h2>Tautan pihak ketiga</h2><p>WhatsApp dan aplikasi email merupakan layanan pihak ketiga dan memiliki kebijakan privasi masing-masing.</p><h2>Kontak</h2><p>Untuk pertanyaan privasi, hubungi Info@seara.id.</p></div></section></main><Footer/></>}

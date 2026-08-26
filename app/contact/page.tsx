@@ -1,6 +1,7 @@
-import {Header} from "@/components/Header";import {Footer} from "@/components/Footer";export const metadata = {
-  title: "Hubungi Seara & Request Demo",
-  description: "Hubungi tim Seara untuk konsultasi, request demo, dan pembahasan kebutuhan ERP, CRM, HR, Finance, Retail, atau Manufacturing.",
-  alternates: { canonical: "https://seara.id/contact" },
-};
-export default function Page(){return <><Header/><main><section><div className="wrap hero"><div><span className="eyebrow">REQUEST DEMO</span><h1>Tell us how your <span className="gradient">business operates.</span></h1><p className="lead">Gunakan form ini sebagai placeholder UI. Sambungkan ke API/CRM/form handler Anda saat production.</p></div><article className="card"><h3>Request a Demo</h3><form className="form"><input placeholder="Nama"/><input type="email" placeholder="Email perusahaan"/><input placeholder="Nama perusahaan"/><select defaultValue=""><option value="" disabled>Produk yang diminati</option><option>HR & Payroll</option><option>Finance</option><option>Sales & CRM</option><option>Retail & POS</option><option>Manufacturing</option></select><textarea placeholder="Ceritakan kebutuhan Anda"/><button className="btn btnBlue" type="button">Submit Request</button></form></article></div></section></main><Footer/></>;}
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { DemoForm } from "@/components/DemoForm";
+import { JsonLd, breadcrumbSchema } from "@/components/JsonLd";
+
+export const metadata={title:"Hubungi Seara & Request Demo",description:"Hubungi tim Seara untuk konsultasi, request demo, dan pembahasan kebutuhan ERP, CRM, HR, Finance, Retail, atau Manufacturing.",alternates:{canonical:"https://seara.id/contact"}};
+export default function Page(){return <><JsonLd data={breadcrumbSchema([{name:"Beranda",url:"https://seara.id"},{name:"Kontak",url:"https://seara.id/contact"}])}/><Header/><main><section><div className="wrap hero contactHero"><div><span className="eyebrow">COBA DEMO</span><h1>Ceritakan bagaimana <span className="gradient">bisnis Anda bekerja.</span></h1><p className="lead">Tim Seara membantu memetakan kebutuhan, workflow, jumlah pengguna, unit, dan produk yang relevan sebelum implementasi.</p><div className="contactBenefits"><span>✓ Konsultasi kebutuhan</span><span>✓ Pemetaan modul & workflow</span><span>✓ Diskusi integrasi</span></div></div><DemoForm/></div></section></main><Footer/></>}

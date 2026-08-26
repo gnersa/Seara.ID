@@ -1,6 +1,7 @@
-import {Header} from "@/components/Header";import {Footer} from "@/components/Footer";export const metadata = {
-  title: "Request Demo Seara CRM",
-  description: "Request demo Seara CRM untuk omnichannel inbox, lead distribution, round robin, multi-unit, escalation, dan analytics.",
-  alternates: { canonical: "https://crm.seara.id/contact" },
-};
-export default function Page(){return <><Header crm/><main><section><div className="wrap hero"><div><span className="eyebrow">REQUEST CRM DEMO</span><h1>Show us your <span className="gradient">customer workflow.</span></h1><p className="lead">Ceritakan jumlah channel, unit, staff, dan pola distribusi lead Anda.</p></div><article className="card"><h3>Request a Demo</h3><form className="form"><input placeholder="Nama"/><input type="email" placeholder="Email perusahaan"/><input placeholder="Perusahaan"/><select defaultValue=""><option value="" disabled>Jumlah staff</option><option>1–10</option><option>11–50</option><option>51–200</option><option>200+</option></select><textarea placeholder="Ceritakan kebutuhan CRM Anda"/><button className="btn btnBlue" type="button">Submit Request</button></form></article></div></section></main><Footer crm/></>;}
+import { Header } from "@/components/Header";
+import { Footer } from "@/components/Footer";
+import { DemoForm } from "@/components/DemoForm";
+import { JsonLd, breadcrumbSchema } from "@/components/JsonLd";
+
+export const metadata={title:"Request Demo Seara CRM",description:"Request demo Seara CRM untuk omnichannel inbox, lead distribution, round robin, multi-unit, escalation, dan analytics.",alternates:{canonical:"https://crm.seara.id/contact"}};
+export default function Page(){return <><JsonLd data={breadcrumbSchema([{name:"Seara CRM",url:"https://crm.seara.id"},{name:"Request Demo",url:"https://crm.seara.id/contact"}])}/><Header crm/><main><section><div className="wrap hero contactHero"><div><span className="eyebrow">COBA DEMO CRM</span><h1>Tunjukkan workflow <span className="gradient">customer dan lead Anda.</span></h1><p className="lead">Ceritakan channel, jumlah unit, staff, dan pola distribusi lead. Tim Seara akan membantu memetakan setup CRM yang relevan.</p></div><DemoForm crm/></div></section></main><Footer crm/></>}
