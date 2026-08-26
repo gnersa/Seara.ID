@@ -1,17 +1,21 @@
+
+import Image from "next/image";
 import Link from "next/link";
-import { Brand } from "./Brand";
+import { Icons } from "./Icons";
 
 export function Footer({ crm = false }: { crm?: boolean }) {
   return (
-    <footer>
+    <footer className="siteFooter">
       <div className="wrap">
-        <div className="footerGrid">
-          <div>
-            <Brand crm={crm} />
-            <p className="footerIntro">
-              {crm
-                ? "Omnichannel CRM & lead distribution."
-                : "Integrated operational technology for modern businesses."}
+        <div className="footerGrid footerGridV3">
+          <div className="footerBrandColumn">
+            <Link href={crm ? "/crm" : "/"} className="footerBrand">
+              <Image src="/seara-logo.png" width={46} height={46} alt="Seara" />
+              <span>Seara</span>
+            </Link>
+            <p className="footerStatement">
+              <strong>Platform ERP modern untuk perusahaan dinamis.</strong>{" "}
+              Kelola HR, Keuangan, dan Operasional dalam satu ekosistem cerdas.
             </p>
           </div>
 
@@ -30,7 +34,9 @@ export function Footer({ crm = false }: { crm?: boolean }) {
             <Link href="/industri#pendidikan">Pendidikan</Link>
             <Link href="/industri#properti">Properti</Link>
             <Link href="/industri#tour-travel">Tour & Travel</Link>
+            <Link href="/industri#salon-kecantikan">Salon & Kecantikan</Link>
             <Link href="/industri#fnb">F&B</Link>
+            <Link href="/industri#pemerintahan">Pemerintahan</Link>
             <Link href="/industri#logistik">Logistik</Link>
           </div>
 
@@ -43,16 +49,36 @@ export function Footer({ crm = false }: { crm?: boolean }) {
             <Link href="/resources#templates">Templates</Link>
           </div>
 
-          <div className="footerCol">
-            <h4>Seara</h4>
-            <Link href="/harga">Harga</Link>
-            <Link href="/contact">Contact</Link>
-            <a href="#">Privacy</a>
-            <a href="#">Terms</a>
+          <div className="footerContact">
+            <h4>Kontak Kami</h4>
+
+            <a
+              className="contactItem"
+              href="https://wa.me/6285175380890"
+              target="_blank"
+              rel="noreferrer"
+              aria-label="WhatsApp Seara +6285175380890"
+            >
+              <span className="contactIcon whatsappContact"><Icons.whatsapp /></span>
+              <span>+6285175380890</span>
+            </a>
+
+            <a className="contactItem" href="mailto:Info@seara.id" aria-label="Email Info@seara.id">
+              <span className="contactIcon emailContact"><Icons.mail /></span>
+              <span>Info@seara.id</span>
+            </a>
+
+            <div className="contactItem">
+              <span className="contactIcon locationContact"><Icons.pin /></span>
+              <span>Bandung, Jawa Barat</span>
+            </div>
           </div>
         </div>
 
-        <div className="copyright">© 2026 Seara. All rights reserved.</div>
+        <div className="footerBottom">
+          <span>© 2026 Seara. All rights reserved.</span>
+          <span>Built for connected operations.</span>
+        </div>
       </div>
     </footer>
   );

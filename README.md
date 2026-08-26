@@ -1,96 +1,25 @@
-# Seara Website — Next.js
+# Seara Website V3 — Next.js / Vercel Ready
 
-Production-oriented multi-page redesign for **seara.id** and **crm.seara.id**.
+One Next.js project for the Seara website and Seara CRM microsite.
 
 ## Stack
-- Next.js 16.3.3 App Router
-- React 19.2.8
+- Next.js 16 App Router
+- React 19
 - TypeScript
-- Zero UI-library dependency
-- Plain global CSS
-- `proxy.ts` for hostname routing
+- Pure CSS (no UI library)
+- Vercel-ready
+- Hostname routing via `proxy.ts`
 
-## Run locally
+## V3 additions
 
-```bash
-npm install
-npm run dev
-```
-
-Open:
-- Main website: `http://localhost:3000`
-- CRM preview locally: `http://localhost:3000/crm`
-
-## Deploy to Vercel
-
-1. Push this repository to GitHub.
-2. Import the GitHub repository in Vercel.
-3. Framework preset: **Next.js**.
-4. Build command: `npm run build` (default).
-5. Add both domains to the same Vercel project:
-   - `seara.id`
-   - `crm.seara.id`
-6. `proxy.ts` automatically rewrites `crm.seara.id/*` to the internal `/crm/*` routes while keeping the public CRM URL clean.
-
-## Route structure
-
-### seara.id
-- `/`
-- `/produk`
-- `/solusi`
-- `/industri`
-- `/resources`
-- `/about`
-- `/contact`
-
-### crm.seara.id
-Public URL via hostname:
-- `/`
-- `/fitur`
-- `/solusi`
-- `/harga`
-- `/contact`
-
-Internal/local preview:
-- `/crm`
-- `/crm/fitur`
-- `/crm/solusi`
-- `/crm/harga`
-- `/crm/contact`
-
-## Before production
-- Replace placeholder brand mark with official Seara logo in `components/Brand.tsx`.
-- Connect demo/contact forms to your actual API, email provider, or CRM.
-- Confirm current pricing/limits before publishing.
-- Add real product screenshots and customer logos into `/public`.
-- Update privacy/terms links.
-- If blog content is dynamic, connect CMS/API to `/resources`.
-
-## GitHub
-
-Extract the ZIP, then:
-
-```bash
-git init
-git add .
-git commit -m "Initial Seara Next.js redesign"
-git branch -M main
-git remote add origin YOUR_GITHUB_REPOSITORY_URL
-git push -u origin main
-```
-
-
-## Header / Navbar V2
-
-Main `seara.id` navigation now uses:
-
-- Produk
+### Main Navbar
+- Produk (hover mega menu)
   - HR & Payroll
   - Finance
   - CRM
   - Retail & POS
   - Manufacturing
-- Industri
+- Industri (hover mega menu with icons + descriptions)
   - Kesehatan
   - Pendidikan
   - Properti
@@ -100,16 +29,62 @@ Main `seara.id` navigation now uses:
   - Pemerintahan
   - Logistik
 - Harga
-- Resource
+- Resource (hover mega menu with icons + descriptions)
   - Blog
   - Guides
   - Webinar
   - Stories
   - Templates
-- ID/EN UI language switch
+- Language hover menu
+  - Indonesian
+  - English
+- Theme hover menu
+  - Light
+  - Dark
+  - System
 - Login
 - WhatsApp Kami
 - Coba Gratis
 
-Note: replace the placeholder `https://wa.me/` URL in `components/Header.tsx`
-with the official Seara WhatsApp number before production.
+### Branding
+Official uploaded Seara logo is used from:
+- `/public/seara-logo.png`
+- Next.js favicon metadata
+- `/app/icon.png`
+
+### Contact
+- WhatsApp: `+6285175380890`
+  - Direct URL: `https://wa.me/6285175380890`
+- Email: `Info@seara.id`
+  - Direct URL: `mailto:Info@seara.id`
+- Location: Bandung, Jawa Barat
+
+### Footer copy
+**Platform ERP modern untuk perusahaan dinamis. Kelola HR, Keuangan, dan Operasional dalam satu ekosistem cerdas.**
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+Main site:
+`http://localhost:3000`
+
+CRM local preview:
+`http://localhost:3000/crm`
+
+## Vercel deployment
+
+1. Extract this ZIP.
+2. Upload/push the extracted project files to your GitHub repository.
+3. Import the repository in Vercel.
+4. Framework: Next.js.
+5. Deploy.
+6. Connect `seara.id` and `crm.seara.id` to the same Vercel project.
+
+`proxy.ts` rewrites requests from `crm.seara.id` to internal `/crm` routes.
+
+## Important
+The language menu persists the selected Indonesian/English setting and translates navigation labels. Full page-by-page English content can be expanded later using an i18n dictionary or locale routes.
